@@ -233,17 +233,11 @@ function ProfilePage({ setPage }: { setPage: (p: Page) => void }) {
 
 function ExamsPage({ setPage }: { setPage: (p: Page) => void }) {
   const subjects = [
-    { name: "Математика (углублённый уровень)", score: 9, max: 10, icon: "Calculator" },
-    { name: "Русский язык", score: 8, max: 10, icon: "BookOpen" },
-    { name: "Английский язык", score: 7, max: 10, icon: "Globe" },
-    { name: "Информатика", score: 8, max: 10, icon: "Monitor" },
+    { name: "Математика (углублённый уровень)", score: 9, max: 10, date: "21.04.2026" },
+    { name: "Русский язык", score: 8, max: 10, date: "23.04.2026" },
+    { name: "Иностранный (английский) язык", score: 7, max: 10, date: "24.04.2026" },
+    { name: "Информатика (углублённый уровень)", score: 8, max: 10, date: "25.04.2026" },
   ];
-
-  const getColor = (score: number) => {
-    if (score >= 90) return { bg: "bg-green-50", border: "border-green-200", bar: "bg-green-500", text: "text-green-700" };
-    if (score >= 75) return { bg: "bg-blue-50", border: "border-blue-200", bar: "bg-blue-500", text: "text-blue-700" };
-    return { bg: "bg-orange-50", border: "border-orange-200", bar: "bg-orange-500", text: "text-orange-700" };
-  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -255,54 +249,60 @@ function ExamsPage({ setPage }: { setPage: (p: Page) => void }) {
         Назад в личный кабинет
       </button>
 
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 bg-[#0050A0] rounded-xl flex items-center justify-center">
-            <Icon name="ClipboardList" size={18} className="text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-black text-gray-900" style={{ fontFamily: "Montserrat, sans-serif" }}>
-              Вступительные экзамены
-            </h1>
-            <p className="text-sm text-gray-400">Приёмная кампания 2024 · Биннатов Эмин</p>
-          </div>
-        </div>
-      </div>
-
       <div className="space-y-4">
-        {subjects.map((subj, i) => {
-          const c = getColor(subj.score);
-          return (
-            <div
-              key={i}
-              className={`${c.bg} ${c.border} border rounded-2xl p-5 transition-all hover:shadow-sm`}
-              style={{ animationDelay: `${i * 0.08}s` }}
-            >
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm`}>
-                    <Icon name={subj.icon} size={18} className={c.text} />
+        {subjects.map((subj, i) => (
+          <div key={i} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+            {/* Header */}
+            <div className="flex items-center gap-4 px-6 py-5 border-b border-gray-100">
+              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Icon name="GraduationCap" size={22} className="text-gray-800" />
+              </div>
+              <h2 className="text-lg font-bold text-gray-900" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                Вступительные экзамены для поступления в 9 класс
+              </h2>
+            </div>
+
+            {/* Body */}
+            <div className="flex divide-x divide-gray-100">
+              {/* Left */}
+              <div className="flex-1 px-6 py-5 space-y-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="BookOpen" size={18} className="text-gray-700" />
                   </div>
-                  <span className="font-bold text-gray-900 text-base" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                    {subj.name}
-                  </span>
+                  <div>
+                    <p className="text-xs text-gray-400 mb-1">Предмет</p>
+                    <p className="text-base font-semibold text-gray-900">{subj.name}</p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <span className={`text-2xl font-black ${c.text}`} style={{ fontFamily: "Montserrat, sans-serif" }}>
-                    {subj.score}
-                  </span>
-                  <span className="text-gray-400 text-sm font-medium"> / {subj.max}</span>
+                <div className="border-t border-gray-100 pt-5 flex items-start gap-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="CalendarDays" size={18} className="text-gray-700" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 mb-1">Дата</p>
+                    <p className="text-base font-semibold text-gray-900">{subj.date}</p>
+                  </div>
                 </div>
               </div>
-              <div className="w-full bg-white/70 rounded-full h-2.5">
-                <div
-                  className={`${c.bar} h-2.5 rounded-full transition-all duration-700`}
-                  style={{ width: `${(subj.score / subj.max) * 100}%` }}
-                />
+
+              {/* Right */}
+              <div className="w-52 flex-shrink-0 bg-gray-50 px-6 py-5 flex flex-col justify-center gap-5">
+                <div>
+                  <p className="text-xs text-gray-400 mb-1 font-medium">Ваш результат</p>
+                  <p className="text-2xl font-black text-gray-900" style={{ fontFamily: "Montserrat, sans-serif" }}>
+                    {subj.score} <span className="font-bold">баллов</span>{" "}
+                    <span className="text-lg font-normal text-gray-500">из {subj.max}</span>
+                  </p>
+                </div>
+                <div className="border-t border-gray-200 pt-4">
+                  <p className="text-xs text-gray-400 mb-1 font-medium">Итог</p>
+                  <p className="text-xl font-bold text-green-500">зачет</p>
+                </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );
