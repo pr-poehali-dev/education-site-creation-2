@@ -163,7 +163,7 @@ function ProfilePage({ setPage }: { setPage: (p: Page) => void }) {
             </div>
             <div className="flex flex-wrap gap-2 items-center">
               <span className="bg-gray-100 text-gray-600 text-xs px-3 py-1.5 rounded-full font-medium">ID: 20240401</span>
-              <span className="bg-[#F5A623] text-white text-xs px-3 py-1.5 rounded-full font-semibold">ПРИЁМНАЯ КАМПАНИЯ 2024</span>
+              <span className="bg-[#F5A623] text-white text-xs px-3 py-1.5 rounded-full font-semibold">ПРИЁМНАЯ КОМИССИЯ 2026</span>
             </div>
           </div>
         </div>
@@ -233,10 +233,10 @@ function ProfilePage({ setPage }: { setPage: (p: Page) => void }) {
 
 function ExamsPage({ setPage }: { setPage: (p: Page) => void }) {
   const subjects = [
-    { name: "Математика", score: 92, max: 100, icon: "Calculator" },
-    { name: "Русский язык", score: 78, max: 100, icon: "BookOpen" },
-    { name: "Английский язык", score: 78, max: 100, icon: "Globe" },
-    { name: "Информатика", score: 85, max: 100, icon: "Monitor" },
+    { name: "Математика (углублённый уровень)", score: 9, max: 10, icon: "Calculator" },
+    { name: "Русский язык", score: 8, max: 10, icon: "BookOpen" },
+    { name: "Английский язык", score: 7, max: 10, icon: "Globe" },
+    { name: "Информатика", score: 8, max: 10, icon: "Monitor" },
   ];
 
   const getColor = (score: number) => {
